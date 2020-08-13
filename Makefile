@@ -13,7 +13,7 @@ cpyFileWoComments-debug: $(DBGOBJS)
 %.dbg.o: %.c
 	 gcc $(DBGFLAGS) -c -o $@ $<
 clean:
-	rm -f cpyFileWoComments cpyFileWoComments-debug *.o *.c~ *.h~
+	rm -f *.*~ cpyFileWoComments cpyFileWoComments-debug *.o *.c~ *.h~
 depend:
 	makedepend $(SRCS)
 	makedepend -a -o .dbg.o  $(SRCS)
