@@ -1,2 +1,2 @@
 # cpyFileWoComments
-Copies a file with comments into a file without comments.
+Copies a file with comments into another file without copying annoying comments.
