@@ -1,2 +1,2 @@
-# twoIPsInSameSubnet
-Template for C programs with Makefile, Header- and Implementationfiles
+# cpyFileWoComments
+Copies a file with comments into a file without comments.
