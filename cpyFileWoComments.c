@@ -36,7 +36,7 @@ int main(int argc, const char **argv) {
 
   // Check input arguments
   if ( argc < 2) {
-    printf("Usage: ./cpyFileWoComments <source filename> 'startDelimiter', 'endDelimiter' (2nd optional, if the same)\n");
+    printf("Usage: ./cpyFileWoComments <source filename> 'startDelimiter' 'endDelimiter' (2nd optional, if the same)\n");
     return EXIT_FAILURE;
   }
   if ( (infile = fopen(argv[1], "r")) == NULL ) {
@@ -45,13 +45,22 @@ int main(int argc, const char **argv) {
   }
   // Create output filename and file
   char outFileName[MAX];
-  strncpy(outFileName, argv[1], MAX-4);
-  strcat(outFileName, "_cpy");
+  int len = strlen(argv[1]);
+  if (argv[1][len-4] == '.') {
+      strncpy(outFileName, argv[1], len-4);
+      strcat(outFileName, "_woC");
+      strcat(outFileName, &argv[1][len-4]);
+  }
+  else {
+    strncpy(outFileName, argv[1], MAX-4);
+    strcat(outFileName, "_woC");
+  }
+  
   if ( (outfile = fopen(outFileName, "w")) == NULL ) {
     fprintf(stderr, "Could not open copy file!\n");
     return EXIT_FAILURE;
   }
-  // Copy only relevant Bytes
+  // Copy only relevant Bytes, (means no comments)
   int ch;
   int del = argv[2][0];
   while ( (ch = fgetc(infile)) != EOF ) {
